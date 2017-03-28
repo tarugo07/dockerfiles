@@ -10,3 +10,9 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/jre
 ENV PATH $PATH:/usr/local/hbase/bin
 
 RUN mkdir /data
+
+EXPOSE 2181
+EXPOSE 60000
+EXPOSE 60010
+EXPOSE 60020
+EXPOSE 60030
