@@ -16,3 +16,5 @@ EXPOSE 60000
 EXPOSE 60010
 EXPOSE 60020
 EXPOSE 60030
+
+CMD /usr/local/hbase/bin/start-hbase.sh
