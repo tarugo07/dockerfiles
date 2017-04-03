@@ -1,5 +1,5 @@
 
-FROM java:8-jdk
+FROM java:openjdk-8-jdk-alpine
 MAINTAINER Tomoyoshi Ogura
 
 RUN wget --quiet -O - http://archive.apache.org/dist/hbase/1.2.4/hbase-1.2.4-bin.tar.gz | tar --directory /usr/local -xzf -
