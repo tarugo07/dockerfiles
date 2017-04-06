@@ -2,7 +2,7 @@
 FROM java:openjdk-8-jdk-alpine
 MAINTAINER Tomoyoshi Ogura
 
-ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
+ENV JAVA_HOME=/usr/lib/jvm/default-jvm
 
 RUN wget -q -O - http://archive.apache.org/dist/hbase/1.2.4/hbase-1.2.4-bin.tar.gz | tar --directory /usr/local -xzf -
 RUN ln -s /usr/local/hbase-1.2.4 /usr/local/hbase
