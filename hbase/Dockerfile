@@ -1,20 +1,25 @@
+FROM openjdk:8u191-jdk-alpine3.8
 
-FROM java:openjdk-8-jdk-alpine
-MAINTAINER Tomoyoshi Ogura
+LABEL maintainer="Tomoyoshi Ogura <tomoyoshi.ogura@gmail.com>"
 
-ENV JAVA_HOME=/usr/lib/jvm/default-jvm
+ARG HBASE_VERSION=1.2.0
 
-RUN wget -q -O - http://archive.apache.org/dist/hbase/1.2.4/hbase-1.2.4-bin.tar.gz | tar --directory /usr/local -xzf -
-RUN ln -s /usr/local/hbase-1.2.4 /usr/local/hbase
+RUN apk add --update --no-cache bash && \
+    wget -q -O - http://archive.apache.org/dist/hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz | tar --directory /usr/local -xzf - && \
+    ln -s /usr/local/hbase-$HBASE_VERSION /usr/local/hbase && \
+    mkdir -p /var/lib/zookeeper && \
+    mkdir -p /var/lib/hbase
 
 ENV PATH $PATH:/usr/local/hbase/bin
 
-RUN mkdir /data
+VOLUME /var/lib/hbase
 
-EXPOSE 2181
-EXPOSE 60000
-EXPOSE 60010
-EXPOSE 60020
-EXPOSE 60030
+ADD ./run.sh /run.sh
+RUN chmod +x /run.sh
 
-CMD /usr/local/hbase/bin/start-hbase.sh
+ADD ./hbase-site.xml /usr/local/hbase/conf/
+ADD ./hbase-env.sh /usr/local/hbase/conf/
+
+EXPOSE 2181 2888 3888 16000 16010 16020 16030
+
+CMD ["/run.sh"]

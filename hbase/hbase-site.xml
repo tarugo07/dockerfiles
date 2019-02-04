@@ -1,26 +1,46 @@
 <configuration>
   <property>
     <name>hbase.rootdir</name>
-    <value>file:////data/hbase</value>
+    <value>file:////var/lib/hbase</value>
+  </property>
+  <property>
+    <name>hbase.cluster.distributed</name>
+    <value>false</value>
+  </property>
+  <property>
+    <name>hbase.zookeeper.property.dataDir</name>
+    <value>/var/lib/zookeeper</value>
+  </property>
+  <property>
+    <name>hbase.zookeeper.quorum</name>
+    <value>hbase</value>
+  </property>
+  <property>
+    <name>hbase.zookeeper.property.clientPort</name>
+    <value>2182</value>
+  </property>
+  <property>
+    <name>hbase.zookeeper.peerport</name>
+    <value>2888</value>
+  </property>
+  <property>
+    <name>hbase.zookeeper.leaderport</name>
+    <value>3888</value>
   </property>
   <property>
     <name>hbase.master.port</name>
-    <value>60000</value>
+    <value>16000</value>
   </property>
   <property>
     <name>hbase.master.info.port</name>
-    <value>60010</value>
+    <value>16010</value>
   </property>
   <property>
     <name>hbase.regionserver.port</name>
-    <value>60020</value>
+    <value>16020</value>
   </property>
   <property>
     <name>hbase.regionserver.info.port</name>
-    <value>60030</value>
-  </property>
-  <property>
-    <name>hbase.regionserver.ipc.address</name>
-    <value>0.0.0.0</value>
+    <value>16030</value>
   </property>
 </configuration>
